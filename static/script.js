@@ -5,6 +5,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 const eqLayer = L.layerGroup().addTo(map);
 const rainLayer = L.layerGroup().addTo(map);
+const forecastLayer = L.layerGroup().addTo(map);  // New layer for predictions
 
 function classifyRain(mm) {
   if (mm === 0) return "No Rain";
@@ -26,6 +27,7 @@ function loadIncidents() {
     .then(data => {
       eqLayer.clearLayers();
       rainLayer.clearLayers();
+      forecastLayer.clearLayers();
 
       data.forEach(i => {
         if (i.type === 'earthquake') {
@@ -34,12 +36,12 @@ function loadIncidents() {
             color: 'red',
             fillColor: 'red',
             fillOpacity: 0.5,
-            radius: 2500 * (i.magnitude || 1)  // Reduced size
+            radius: 2500 * (i.magnitude || 1)
           })
             .bindPopup(`<b>Earthquake</b><br>${i.place || ''}<br>Mag: ${i.magnitude}${dateStr}`)
             .addTo(eqLayer);
 
-        } else if (i.type === 'rainfall' && i.precipitation > 0) {
+        } else if (i.type === 'rainfall') {
           const rainType = classifyRain(i.precipitation);
           const dateStr = i.date ? `<br><i>${formatDate(i.date)}</i>` : '';
           L.marker([i.latitude, i.longitude], {
@@ -50,6 +52,18 @@ function loadIncidents() {
           })
             .bindPopup(`<b>${i.city}</b><br>Rain: ${i.precipitation} mm<br><b>${rainType}</b>${dateStr}`)
             .addTo(rainLayer);
+
+        } else if (i.type === 'forecast') {
+          const rainType = classifyRain(i.predicted_rainfall);
+          const dateStr = i.date ? `<br><i>${formatDate(i.date)}</i>` : '';
+          L.marker([i.latitude, i.longitude], {
+            icon: L.icon({
+              iconUrl: '/static/icons/rain_pred.png',
+              iconSize: [26, 26]
+            })
+          })
+            .bindPopup(`<b>${i.city}</b><br><u>Predicted Rain:</u> ${i.predicted_rainfall} mm<br><b>${rainType}</b>${dateStr}`)
+            .addTo(forecastLayer);
         }
       });
     });
@@ -61,6 +75,9 @@ document.getElementById('earthquake-toggle').onchange = function () {
 
 document.getElementById('rainfall-toggle').onchange = function () {
   this.checked ? map.addLayer(rainLayer) : map.removeLayer(rainLayer);
+};
+document.getElementById('forecast-toggle').onchange = function () {
+    this.checked ? map.addLayer(forecastLayer) : map.removeLayer(forecastLayer);
 };
 
 loadIncidents();

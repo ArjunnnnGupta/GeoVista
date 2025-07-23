@@ -1,9 +1,9 @@
 from flask import Flask
-from app.routes import main
+from app.routes import bp
 from scheduler import start_scheduler
 
 app = Flask(__name__)
-app.register_blueprint(main)
+app.register_blueprint(bp)
 
 start_scheduler()
 
