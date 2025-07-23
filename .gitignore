@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual env
+venv/
+.env/
+
+# OS junk
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data files
+data/*.json
