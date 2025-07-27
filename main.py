@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from app.routes import bp
 from scheduler import start_scheduler
@@ -10,4 +11,5 @@ def activate_scheduler():
     start_scheduler()
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000, debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Use Render's port if available
+    app.run(host="0.0.0.0", port=port)
