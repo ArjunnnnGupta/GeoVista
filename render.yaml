@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: geovista
+    env: python
+    buildCommand: ""
+    startCommand: python main.py
+    autoDeploy: true
