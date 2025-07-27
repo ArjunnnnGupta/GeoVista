@@ -1,12 +1,12 @@
 services:
-  - type: web                      # You're deploying a web service ✅
-    name: geovista-app             # The name of your app on Render ✅
-    env: python                    # Tells Render it’s a Python app ✅
-    buildCommand: pip install -r requirements.txt   # Installs all dependencies ✅
-    startCommand: gunicorn wsgi:app                # Uses your wsgi.py file ✅
-    autoDeploy: true               # Auto-deploy on GitHub push ✅
+  - type: web
+    name: geovista-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn wsgi:app --bind 0.0.0.0:$PORT
+    autoDeploy: true
     envVars:
       - key: PYTHON_VERSION
-        value: 3.10                # Optional, but safe to specify ✅
+        value: 3.10
       - key: FLASK_ENV
-        value: production          # Optional, good practice for production mode ✅
+        value: production
