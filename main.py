@@ -5,7 +5,7 @@ from scheduler import start_scheduler
 app = Flask(__name__)
 app.register_blueprint(bp)
 
-@app.before_first_request
+@app.before_request
 def activate_scheduler():
     start_scheduler()
 
