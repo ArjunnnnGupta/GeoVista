@@ -1,4 +1,4 @@
-visit https://geovista.onrender.com/ for full experience
+visit https://geovista.onrender.com for full experience
 GeoVista – Smart Geospatial Incident Analyzer
 
 **GeoVista** is a smart, real-time dashboard that visualizes rainfall forecasts, earthquake events, and more across major Indian cities. Built with 🧠 Machine Learning and 🌍 Geospatial Intelligence, it's designed to help monitor and analyze natural incidents using beautiful, map-based layers.
