@@ -24,3 +24,7 @@ GeoVista – Smart Geospatial Incident Analyzer
 - **Scheduler**: APScheduler
 - **Hosting**: Render
 - **Data**: Weather APIs + USGS Earthquake API
+- demo pictures
+- <img width="452" height="267" alt="image" src="https://github.com/user-attachments/assets/ca988275-36be-4659-b0d2-09a20916ff5a" />
+
+<img width="452" height="267" alt="image" src="https://github.com/user-attachments/assets/a7b17d61-32f2-4e64-861d-4c0700963343" />
