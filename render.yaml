@@ -3,6 +3,5 @@ services:
     name: geovista
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn app.__init__:app"
+    startCommand: "gunicorn wsgi:app"
     autoDeploy: true
-
