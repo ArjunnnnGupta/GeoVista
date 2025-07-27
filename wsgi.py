@@ -1,3 +1,5 @@
+# wsgi.py
 from main import app
 
-# No need for app.run() — gunicorn will handle running the app
+if __name__ == "__main__":
+    app.run()
